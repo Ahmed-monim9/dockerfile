@@ -1,0 +1,24 @@
+$ docker build -t my_project_image .
+Sending build context to Docker daemon  5.120kB
+Step 1/5 : FROM ubuntu:18.04
+ ---> 5b2e9b7f8f90
+Step 2/5 : RUN apt-get update && apt-get install -y gcc
+ ---> Running in 5b78c178c5b5
+Get:1 http://archive.ubuntu.com/ubuntu bionic InRelease [242 kB]
+...
+Removing intermediate container 5b78c178c5b5
+ ---> f5e7a1c44f02
+Step 3/5 : COPY . /MyProj_Group_Surname
+ ---> 2a20dbb8c28f
+Step 4/5 : WORKDIR /MyProj_Group_Surname
+ ---> Running in 12345abcde
+Removing intermediate container 12345abcde
+ ---> 1a2b3c4d5e6f
+Step 5/5 : CMD ["./my_Program", "параметр_по_умолчанию"]
+ ---> Running in 123abc456def
+Removing intermediate container 123abc456def
+Successfully built 1a2b3c4d5e6f
+Successfully tagged my_project_image:latest
+//запуск контейнера
+$ docker run --rm your_dockerhub_username/my_project_image
+Hello, World!  # Это пример вывода вашей программы
