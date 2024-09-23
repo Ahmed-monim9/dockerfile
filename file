@@ -1,0 +1,22 @@
+# Автор: Ваше Имя Фамилия
+FROM ubuntu:18.04
+
+# Установка gcc
+RUN apt-get update && apt-get install -y gcc
+
+# Копирование файлов проекта в контейнер
+COPY . /MyProj_Group_Surname
+
+# Переход в директорию проекта
+WORKDIR /MyProj_Group_Surname
+
+# Компиляция проекта
+RUN gcc -o my_Program main.c  # Замените main.c на ваши исходные файлы
+
+# Установка значения параметра по умолчанию
+CMD ["./my_Program", "параметр_по_умолчанию"]
+docker build -t my_project_image 
+docker login  # Вход в DockerHub
+docker tag my_project_image your_dockerhub_username/my_project_image
+docker push your_dockerhub_username/my_project_image
+docker run --rm your_dockerhub_username/my_project_image
